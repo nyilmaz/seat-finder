@@ -1,0 +1,11 @@
+{
+	"name": "seat-finder",
+	"version": "0.1.0",
+	"author": "nyilmaz",
+	"start": "node main",
+
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"jquery": "latest"
+	}
+}
