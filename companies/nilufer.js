@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var Logger = require('./logger.js');
+var Logger = require('../logger/logger.js');
 var logger = new Logger('NILUFER TURIZM');
 
 
@@ -7,6 +7,11 @@ var KOLTUK_URL = 'http://www.nilufer.com.tr/2011/Koltuk.php';
 var SEFER_URL = 'http://www.nilufer.com.tr/2011/Sefer.php';
 
 module.exports = {
+
+	initialize: function(){
+
+	},
+
 	getEmptySeatFor: function(Kalkis, Varis, Tarih){
 		
 		$.get(

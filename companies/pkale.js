@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var Logger = require('./logger.js');
+var Logger = require('../logger/logger.js');
 var logger = new Logger('PAMUKKALE');
 
 var SEFER_URL = 'https://www.pamukkale.com.tr/Sefer.php';
