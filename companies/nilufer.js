@@ -31,25 +31,30 @@ module.exports = {
 				var $x = $(x);
 				var $info = $x.find('font[size=4][color=red] b');
 				var seferNo = $x.attr('id').replace('Sef', '');
+				
 				$.get(KOLTUK_URL, 
 				{
 					Seferid: seferNo,
 					Kalkis: Kalkis,
-					Varis: Varis
+					Varis: Varis,
+					SeciliKoltuklar: '',
+					DevamSayfa: ''
 				})
 				.done(function(data){})
 				.fail(function(data){
 					var otobus = $.parseHTML(data.responseText);
-					var seats = $(otobus).find('.tdkare');
+					var seats = $(otobus).find('input.chkbox');
+					
 					var emptySeats = [];
 					seats.each(function(i, x){
-						var $this = $(this);
-						if($this.attr('onclick') && ($info.html() > Tarih)){
-							emptySeats.push($this.find('td.duzmetin').html());
-						}
+						var $x = $(x);
+						emptySeats.push($x.attr('id').split('*')[1]);
 					});
 					if(emptySeats.length > 0){
-						logger.log('Seat(s) found, date: '  + Tarih + ' - ' + $info.html() + ', seat(s) -> ' + emptySeats.toString());
+						if($info.find('b').html()) {
+							logger.log('Seat(s) found, date: '  + Tarih + ' - ' + $info.find('b').html() + ', seat(s) -> ' + emptySeats.toString());
+						}
+						
 					}
 				});
 			});

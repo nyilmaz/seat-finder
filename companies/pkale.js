@@ -19,12 +19,16 @@ module.exports = {
 		.fail(function(data, textStatus, jqXHR){
 			var html = $.parseHTML(data.responseText);
 			var runs = $(html).find('tr[id^=Sef]');
+			
 			runs.each(function(i, x){
 				var $x = $(x);
-				var $info = $x.find('td[width=39][height=30]');
-				var seferNo = $x.attr('id').replace('Sef', '');
+				
+				var $info = $x.find('font[size=2]');
+				var saat = $x.find('td').eq(1);
+				var seferId = $x.attr('id').replace('Sef', '');
+				
 				$.get(KOLTUK_URL, {
-					Seferid: seferNo,
+					Seferid: seferId,
 					Kalkis: Kalkis,
 					Varis: Varis,
 					SeciliKoltuklar: '',
@@ -38,7 +42,7 @@ module.exports = {
 					var emptySeats = [];
 					seats.each(function(i, x){
 						var $this = $(this);
-						if($this.attr('onclick') && ($info.html() > Tarih)){
+						if($this.attr('onclick') && ($info.html().trim() > Tarih)){
 							var koltukNo = $this.find('table[id^=Kol]').attr('id').split('*')[1];
 							emptySeats.push(koltukNo);
 						}
@@ -48,7 +52,11 @@ module.exports = {
 					}
 					
 				});
+
+
 			});
 		});
-	}
+	},
+
+
 };
